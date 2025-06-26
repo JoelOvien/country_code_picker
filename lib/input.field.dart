@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class InputField extends StatelessWidget {
   const InputField({
-    Key? key,
+    super.key,
     required this.hint,
     required this.controller,
     this.capitalization,
@@ -21,7 +21,7 @@ class InputField extends StatelessWidget {
     this.formatters,
     this.autofocus = true,
     this.focusNode,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final TextCapitalization? capitalization;

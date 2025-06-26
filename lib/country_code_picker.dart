@@ -1,5 +1,3 @@
-library country_code_picker;
-
 import 'dart:math';
 import 'package:country_code_picker/constants.dart';
 import 'package:country_code_picker/country.code.dart';
@@ -15,12 +13,12 @@ export 'country.code.dart';
 
 class CountryCodePicker extends HookWidget {
   const CountryCodePicker({
-    Key? key,
+    super.key,
     this.countryList = codes,
     this.initialSelection,
     this.showModal = false,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   /// An optional argument for injecting a list of countries
   /// with customized codes.
@@ -111,9 +109,9 @@ class CountryCodePicker extends HookWidget {
 
 class FullScreenPicker extends HookWidget {
   const FullScreenPicker({
-    Key? key,
+    super.key,
     required this.codes,
-  }) : super(key: key);
+  });
 
   final List<CountryCode> codes;
   @override
