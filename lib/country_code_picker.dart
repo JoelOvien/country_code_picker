@@ -56,6 +56,8 @@ class CountryCodePicker extends HookWidget {
     }, []);
 
     return CupertinoButton(
+      minSize: 0,
+      padding: EdgeInsets.zero,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -67,7 +69,16 @@ class CountryCodePicker extends HookWidget {
             child: Image.asset(
               selectedItem.value!.flagUri!,
               package: 'country_code_picker',
-              width: getScreenWidth(32),
+              width: getScreenWidth(30),
+              height: getScreenWidth(24),
+            ),
+          ),
+          SizedBox(width: 10),
+          Text(
+            selectedItem.value?.dialCode ?? "",
+            style: TextStyle(
+              fontSize: getScreenHeight(13),
+              color: Color(0xFF595F51),
             ),
           ),
           SizedBox(width: getScreenWidth(5)),
