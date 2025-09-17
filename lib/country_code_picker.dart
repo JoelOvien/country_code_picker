@@ -17,6 +17,7 @@ class CountryCodePicker extends HookWidget {
     this.countryList = codes,
     this.initialSelection,
     this.showModal = false,
+    this.showDialCode = true,
     required this.onChanged,
   });
 
@@ -30,6 +31,8 @@ class CountryCodePicker extends HookWidget {
   final Function(CountryCode) onChanged;
 
   final bool showModal;
+
+  final bool showDialCode;
 
   @override
   Widget build(BuildContext context) {
@@ -73,14 +76,16 @@ class CountryCodePicker extends HookWidget {
               height: getScreenWidth(24),
             ),
           ),
-          SizedBox(width: 10),
-          Text(
-            selectedItem.value?.dialCode ?? "",
-            style: TextStyle(
-              fontSize: getScreenHeight(13),
-              color: Color(0xFF595F51),
+          if (showDialCode) ...[
+            SizedBox(width: 10),
+            Text(
+              selectedItem.value?.dialCode ?? "",
+              style: TextStyle(
+                fontSize: getScreenHeight(13),
+                color: Color(0xFF595F51),
+              ),
             ),
-          ),
+          ],
           SizedBox(width: getScreenWidth(5)),
           Transform.rotate(
             angle: -pi / 2,
@@ -94,8 +99,7 @@ class CountryCodePicker extends HookWidget {
       ),
       onPressed: () async {
         if (showModal) {
-          return await showCountryPickerModal(
-              context, elements.value, searchController, (val) {
+          return await showCountryPickerModal(context, elements.value, searchController, (val) {
             selectedItem.value = val;
             onChanged(val);
           });
@@ -162,8 +166,8 @@ class FullScreenPicker extends HookWidget {
                 padding: EdgeInsets.symmetric(
                   horizontal: getScreenWidth(12),
                 ),
-                child: Icon(Icons.search,
-                    size: getScreenHeight(25), color: const Color(0xFFDADADA)),
+                child:
+                    Icon(Icons.search, size: getScreenHeight(25), color: const Color(0xFFDADADA)),
               ),
               onChanged: (value) {
                 final val = value.toUpperCase();
@@ -213,14 +217,12 @@ class FullScreenPicker extends HookWidget {
                         title: Text(
                           data.name ?? '',
                           style: GoogleFonts.inter(
-                              fontSize: getScreenHeight(16),
-                              color: const Color(0xFF1C1C1E)),
+                              fontSize: getScreenHeight(16), color: const Color(0xFF1C1C1E)),
                         ),
                         trailing: Text(
                           data.dialCode ?? '',
                           style: GoogleFonts.inter(
-                              fontSize: getScreenHeight(16),
-                              color: const Color(0xFF1C1C1E)),
+                              fontSize: getScreenHeight(16), color: const Color(0xFF1C1C1E)),
                         ),
                       ),
                     );
@@ -237,8 +239,7 @@ class FullScreenPicker extends HookWidget {
 
 class CustomScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 }
@@ -356,14 +357,12 @@ Future<void> showCountryPickerModal(
                             title: Text(
                               data.name ?? '',
                               style: GoogleFonts.inter(
-                                  fontSize: getScreenHeight(16),
-                                  color: const Color(0xFF1C1C1E)),
+                                  fontSize: getScreenHeight(16), color: const Color(0xFF1C1C1E)),
                             ),
                             trailing: Text(
                               data.dialCode ?? '',
                               style: GoogleFonts.inter(
-                                  fontSize: getScreenHeight(16),
-                                  color: const Color(0xFF1C1C1E)),
+                                  fontSize: getScreenHeight(16), color: const Color(0xFF1C1C1E)),
                             ),
                           ),
                         );
